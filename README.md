@@ -1,1 +1,3 @@
-"# Educode" 
+"# Educode"
+
+Get better website performance
