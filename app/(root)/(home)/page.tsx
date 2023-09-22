@@ -1,7 +1,16 @@
 import Filters from '@/components/Filters';
 import SearhcForm from '@/components/SearhcForm';
+import { getResources } from '@/sanity/actions';
 
-const Page = () => {
+const Page = async () => {
+  const resources = await getResources({
+    query: '',
+    category: '',
+    page: '1',
+  });
+
+  console.log(resources);
+
   return (
     <main className='flex-center flex-col w-full max-w-screen-2xl paddings mx-auto'>
       <section className='nav-padding w-full'>
