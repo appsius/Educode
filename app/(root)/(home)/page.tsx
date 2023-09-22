@@ -1,6 +1,9 @@
 import Filters from '@/components/Filters';
+import ResourceCard from '@/components/ResourceCard';
 import SearhcForm from '@/components/SearhcForm';
 import { getResources } from '@/sanity/actions';
+
+export const revalidate = 900;
 
 const Page = async () => {
   const resources = await getResources({
@@ -8,8 +11,6 @@ const Page = async () => {
     category: '',
     page: '1',
   });
-
-  console.log(resources);
 
   return (
     <main className='flex-center flex-col w-full max-w-screen-2xl paddings mx-auto'>
@@ -24,6 +25,25 @@ const Page = async () => {
       </section>
 
       <Filters />
+
+      <section className='flex-center flex-col w-full mt-6 sm:mt-20'>
+        Header
+        <div className='flex flex-wrap justify-center mt-12 w-full gap-16 sm:justify-start'>
+          {resources.length > 0 ? (
+            resources.map((resource: any) => (
+              <ResourceCard
+                key={resource._id}
+                id={resource._id}
+                title={resource.title}
+                image={resource.image}
+                downloadNumber={resource.views}
+              />
+            ))
+          ) : (
+            <p className='body-regular text-white-400'>No resouce found</p>
+          )}
+        </div>
+      </section>
     </main>
   );
 };
