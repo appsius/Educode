@@ -1,14 +1,19 @@
 import Filters from '@/components/Filters';
+import Header from '@/components/Header';
 import ResourceCard from '@/components/ResourceCard';
 import SearhcForm from '@/components/SearhcForm';
 import { getResources } from '@/sanity/actions';
 
 export const revalidate = 900;
 
-const Page = async () => {
+interface Props {
+  searchParams: { [key: string]: string | undefined };
+}
+
+const Page = async ({ searchParams }: Props) => {
   const resources = await getResources({
     query: '',
-    category: '',
+    category: searchParams?.category || '',
     page: '1',
   });
 
@@ -27,7 +32,8 @@ const Page = async () => {
       <Filters />
 
       <section className='flex-center flex-col w-full mt-6 sm:mt-20'>
-        Header
+        <Header />
+
         <div className='flex flex-wrap justify-center mt-12 w-full gap-16 sm:justify-start'>
           {resources.length > 0 ? (
             resources.map((resource: any) => (
