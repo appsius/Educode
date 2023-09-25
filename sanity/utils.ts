@@ -31,15 +31,27 @@ export function buildQuery(params: BuildQueryParams) {
 }
 
 interface UrlQueryParams {
-  key: string;
-  value: string | null;
   params: string;
+  key?: string;
+  value?: string | null;
+  keysToRemove?: string[];
 }
 
-export function formUrlQuery({ key, value, params }: UrlQueryParams) {
+export function formUrlQuery({
+  params,
+  key,
+  value,
+  keysToRemove,
+}: UrlQueryParams) {
   const currentUrl = qs.parse(params);
 
-  currentUrl[key] = value;
+  if (keysToRemove) {
+    keysToRemove.forEach((keyToRemove: string) => {
+      delete currentUrl[keyToRemove];
+    });
+  } else if (key && value) {
+    currentUrl[key] = value;
+  }
 
   return qs.stringifyUrl(
     { url: window.location.pathname, query: currentUrl },
