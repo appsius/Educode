@@ -9,9 +9,11 @@ export const metadata: Metadata = {
   other: {
     'theme-color': '#0d1117',
     'color-scheme': 'dark only',
-    'twitter:image': 'https://ibb.co/G7HsB9d', // share image
+    'twitter:image':
+      'https://images.unsplash.com/photo-1520092352425-9699926a9b0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80', // share image
     'twitter:card': 'summary_large_image',
-    'og:url': 'https://ibb.co/G7HsB9d',
+    'og:url':
+      'https://images.unsplash.com/photo-1520092352425-9699926a9b0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     'og:type': 'website',
   },
 };
