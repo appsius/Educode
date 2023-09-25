@@ -19,8 +19,6 @@ const Page = async ({ searchParams }: Props) => {
 
   const resourcesPlaylist = await getResourcesPlaylist();
 
-  console.log(resourcesPlaylist);
-
   return (
     <main className='flex-center flex-col w-full max-w-screen-2xl paddings mx-auto'>
       <section className='nav-padding w-full'>
