@@ -57,6 +57,4 @@ export function formUrlQuery({
     { url: window.location.pathname, query: currentUrl },
     { skipNull: true }
   );
-
-  console.log(currentUrl, key, value);
 }
