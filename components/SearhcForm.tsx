@@ -2,10 +2,39 @@
 
 import Image from 'next/image';
 import { Input } from './ui/input';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { formUrlQuery } from '@/sanity/utils';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 const SearhcForm = () => {
   const [search, setSearch] = useState('');
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    const debounceDelayFn = setTimeout(() => {
+      let newUrl = '';
+
+      if (search) {
+        newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: 'query',
+          value: search,
+        });
+      } else {
+        newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          keysToRemove: ['query'],
+        });
+      }
+
+      router.push(newUrl, { scroll: false });
+    }, 300);
+
+    // For optimized rendering - performance
+    return () => clearTimeout(debounceDelayFn);
+  }, [search]);
 
   return (
     <form className='flex-center mx-auto mt-10 w-full sm:-mt-10 sm:px-5'>
